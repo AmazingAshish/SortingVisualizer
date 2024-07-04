@@ -55,3 +55,7 @@ body{
 button:hover{
     background-color: #2571f3;
 }
+footer{
+    color: white;
+    text-align: center;
+}
