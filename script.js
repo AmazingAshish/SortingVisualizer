@@ -292,6 +292,33 @@ async function swap(array, i, j, bars) {
   //bars[j].innerText = array[j];
   return array;
 }
+async function InsertionSort(array) {
+  let bars = document.getElementsByClassName("bar");
+  for (let i = 1; i < array.length; i++) {
+    let key = array[i];
+    let j = i - 1;
+
+    bars[i].style.backgroundColor = "orange";
+    await sleep(speedFactor);
+
+    while (j >= 0 && array[j] > key) {
+      array[j + 1] = array[j];
+      bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
+      bars[j + 1].style.backgroundColor = "red";
+      await sleep(speedFactor);
+      bars[j].style.backgroundColor = "blue"; // Restore the previous color
+      j--;
+    }
+    array[j + 1] = key;
+    bars[j + 1].style.height = array[j + 1] * heightFactor + "px";
+    bars[j + 1].style.backgroundColor = "blue";
+  }
+
+  for (let k = 0; k < bars.length; k++) {
+    bars[k].style.backgroundColor = "green";
+  }
+  return array;
+}
 
 //write mergeSort function
 async function mergeSort(arr) {
@@ -431,7 +458,7 @@ sort_btn.addEventListener("click", function () {
       HeapSort(unsorted_array);
       break;
     case "insertion":
-      InsertionSort(unsorted_array);
+        InsertionSort(unsorted_array);
       break;
     case "quick":
       console.log(unsorted_array.length);
